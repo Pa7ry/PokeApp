@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pokemon</title>
+	<link rel='stylesheet' href='master.css'/>
+	<link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<h1>Pokemon</h1>
+	</header>
+
+	<hr>
+
+	<div id='main'>
+		<div id='select'>
+			<h2>ELIGE TU POKEMON</h2>
+			<ul>
+				<li onclick='select(event)'><img class='pikachu' src='img/pikachu.png' draggable="true" ondragstart="drag(event)"/></li>
+				<li onclick='select(event)'><img class='charmander' src='img/charmander.png' draggable="true" ondragstart="drag(event)"/></li>
+				<li onclick='select(event)'><img class='bulbasaur' src='img/bulbasaur.png' draggable="true" ondragstart="drag(event)"/></li>
+				<li onclick='select(event)'><img class='squirtle' src='img/squirtle.png' draggable="true" ondragstart="drag(event)"/></li>
+			</ul>
+		</div>
+
+		<hr>
+
+		<div id='battle'>
+			<div id='poke1' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<div id='poke2' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+			<h4>Le has quitado <span id='daño'></span> PS.</h4>
+		</div>
+	</div>
+
+
+	<footer>
+		
+	</footer>
+	<script type="text/javascript" src='master.js'></script>
+</body>
+</html>

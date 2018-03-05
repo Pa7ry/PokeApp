@@ -1,0 +1,60 @@
+/*GENERAL*/
+
+html, body {
+	height: 100%;
+	margin:0;
+	background-color: #FAF3DD;
+}
+
+
+/*HEADER*/
+
+header {
+		height: 10%;
+}
+
+header>h1 {
+	padding: 15px;
+	font-family: 'Bowlby One SC', cursive;
+	color: #BD1E1E;
+	text-align: center;
+}
+
+/*SELECT*/
+
+#select>h2 {
+	text-align: center;
+}
+
+img {
+	max-width: 112px;
+	max-height: 115px;
+}
+
+ul {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+li {
+	display: inline-block;
+	margin: 5%;
+}
+
+p {
+	text-align: center;
+}
+
+/*BATTLE*/
+
+#battle>p {
+	font-family: 'Mina', sans-serif;
+}
+
+
+
+#poke1 {
+	height: 8rem;
+}
