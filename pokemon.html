@@ -11,10 +11,8 @@
 		<h1>Pokemon</h1>
 	</header>
 
-	<hr>
-
 	<div id='main'>
-		<div id='select'>
+		<div id='select' class=''>
 			<h2>ELIGE TU POKEMON</h2>
 			<ul>
 				<li onclick='select(event)'><img class='pikachu' src='img/pikachu.png' draggable="true" ondragstart="drag(event)"/></li>
@@ -24,13 +22,17 @@
 			</ul>
 		</div>
 
-		<hr>
-
 		<div id='battle'>
-			<div id='poke1' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-			<div id='poke2' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-			<h4>Le has quitado <span id='daño'></span> PS.</h4>
-		</div>
+			<div id='poke1' ondrop="drop(event)" ondragover="allowDrop(event)">
+				<progress max='100' value='100' name='progress'class='PS1'></progress>
+				<label for='progress'class='PS1'>100</label>				
+			</div>
+			<button type="button" id='fight' class=''><strong>¡LUCHAR!</strong></button>
+			<div id='poke2' ondrop="drop(event)" ondragover="allowDrop(event)">
+				<progress max='100' value='100' name='progress' class='PS2'></progress>
+				<label for='progress' class='PS2'>100</label>
+			</div>
+		</div>	
 	</div>
 
 

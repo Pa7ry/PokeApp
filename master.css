@@ -3,7 +3,7 @@
 html, body {
 	height: 100%;
 	margin:0;
-	background-color: #FAF3DD;
+	background-color: #D8DBE2;
 }
 
 
@@ -16,26 +16,35 @@ header {
 header>h1 {
 	padding: 15px;
 	font-family: 'Bowlby One SC', cursive;
-	color: #BD1E1E;
+	color: #D81E5B;
 	text-align: center;
+	margin: 0;
+}
+
+hr {
+	margin: 0;
 }
 
 /*SELECT*/
 
-#select>h2 {
-	text-align: center;
+#select{
+	background-color: #A9BCD0;
+	height: 17rem;	
 }
 
-img {
-	max-width: 112px;
-	max-height: 115px;
+#select>h2 {
+	text-align: center;
+	margin: 0;
+	padding-top: 3rem;
+	color: #52489C;
 }
 
 ul {
 	list-style: none;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
+	margin: 0;
 }
 
 li {
@@ -43,9 +52,11 @@ li {
 	margin: 5%;
 }
 
-p {
-	text-align: center;
+img {
+	max-width: 112px;
+	max-height: 115px;
 }
+
 
 /*BATTLE*/
 
@@ -53,8 +64,44 @@ p {
 	font-family: 'Mina', sans-serif;
 }
 
-
+#battle {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 2rem;
+}
 
 #poke1 {
-	height: 8rem;
+	height: 15rem;
+	width: 30%;
+	display: inline-block;
+	border-bottom: 2px solid blue;
+	background-size: 40%;
+	background-repeat: no-repeat;
+	background-position-y: bottom;
+	background-position-x: center;
+}
+
+#poke2 {
+	height: 15rem;
+	width: 30%;
+	display: inline-block;
+	border-bottom: 2px solid red;
+	background-size: 40%;
+	background-repeat: no-repeat;
+	background-position-y: bottom;
+	background-position-x: center;
+}
+
+
+#fight {
+	text-align: center;
+	height: 2rem;
+	background: #D81E5B;
+	color: #D8DBE2;
+	border-radius: 8px;
+}
+
+.hide {
+	display: none;
 }

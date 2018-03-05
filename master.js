@@ -1,11 +1,11 @@
 //DEF. POKEMON
 
 class Pokemon {
-	constructor (name, PS, special, type) {
+	constructor (name, ps, type, img) {
 		this.name = name;
-		this.PS = PS;
-		this.special = special;
+		this.ps = ps;
 		this.type = type;
+		this.img = img;
 	}
 
 	basico(){return basic()};
@@ -13,33 +13,26 @@ class Pokemon {
 	especial(){return special()};
 }
 
-let Pikachu = new Pokemon ('Pikachu', 250, 20, 'electric');
-let Charmander = new Pokemon ('Charmander', 250, 25, 'fire');
-let Squirtle = new Pokemon ('Squirtle', 250, 18, 'water');
-let Bulbasaur = new Pokemon ('Bulbasaur', 250, 23, 'plant');
+let Pikachu = new Pokemon ('Pikachu', 100, 'electric', 'img/pikachu.png');
+let Charmander = new Pokemon ('Charmander', 100, 'fire', 'img/charmander.png');
+let Squirtle = new Pokemon ('Squirtle', 100, 'water', 'img/bulbasaur.png');
+let Bulbasaur = new Pokemon ('Bulbasaur', 100, 'plant', 'img/squirtle.png');
 
 //SELECT POKEMON
-
-let pika = document.getElementById('pikachu');
-let charm = document.getElementById('charmander');
-let squir = document.getElementById('squirtle');
-let bulba = document.getElementById('bulbasaur');
-
 
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData('img', ev.target.id);
+	ev.dataTransfer.setData('text', ev.target.id);
 }
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData('img');
-    ev.target.appendChild(document.getElementById(data));
+	let data = ev.dataTransfer.getData('text');
+    ev.target.style.backgroundImage="url(" + data + ")";
 }
-
 
 //ATTACKS
 
@@ -50,4 +43,10 @@ let special = () => random (20, 10)
 
 
 //BATTLE
-
+ let btn = document.getElementById('fight')
+ let control = document.getElementById('controls')
+ btn.addEventListener('click', ()=>{
+	document.getElementById('select').className = 'hide';
+	btn.className = 'hide';
+	control.className = '';
+ })
