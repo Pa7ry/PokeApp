@@ -32,6 +32,10 @@ hr {
 	height: 17rem;	
 }
 
+#select.hide {
+	display: none;
+}
+
 #select>h2 {
 	text-align: center;
 	margin: 0;
@@ -71,7 +75,7 @@ img {
 	padding: 2rem;
 }
 
-#poke1 {
+#poke1, #poke2 {
 	height: 15rem;
 	width: 30%;
 	display: inline-block;
@@ -82,19 +86,7 @@ img {
 	background-position-x: center;
 }
 
-#poke2 {
-	height: 15rem;
-	width: 30%;
-	display: inline-block;
-	border-bottom: 2px solid red;
-	background-size: 40%;
-	background-repeat: no-repeat;
-	background-position-y: bottom;
-	background-position-x: center;
-}
-
-
-#fight {
+button {
 	text-align: center;
 	height: 2rem;
 	background: #D81E5B;
@@ -102,6 +94,34 @@ img {
 	border-radius: 8px;
 }
 
-.hide {
+button.hide {
+	display: none;
+}
+
+/*CONTROLS*/
+
+/*#controls, #info {
+	width: 30%;
+	margin-left: 13%;
+}*/
+
+#battleAction.hide {
+	display: none;
+}
+
+#battleAction {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem;
+}
+
+#controls, #infoBattle {
+	height: 15rem;
+	width: 30%;
+	display: inline-block;
+}
+
+.ps1.hide, .ps2.hide {
 	display: none;
 }

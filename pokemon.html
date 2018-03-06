@@ -24,17 +24,30 @@
 
 		<div id='battle'>
 			<div id='poke1' ondrop="drop(event)" ondragover="allowDrop(event)">
-				<progress max='100' value='100' name='progress'class='PS1'></progress>
-				<label for='progress'class='PS1'>100</label>				
+				<progress max='100' value='100' name='progress' class='ps1'></progress>
+				<label for='progress' class='ps1'>100</label>				
 			</div>
 			<button type="button" id='fight' class=''><strong>¡LUCHAR!</strong></button>
 			<div id='poke2' ondrop="drop(event)" ondragover="allowDrop(event)">
-				<progress max='100' value='100' name='progress' class='PS2'></progress>
-				<label for='progress' class='PS2'>100</label>
+				<progress max='100' value='100' name='progress' class='ps2'></progress>
+				<label for='progress' class='ps2'>100</label>
 			</div>
 		</div>	
 	</div>
 
+	<div id='battleAction' class='hide'>
+		<div id='controls'>
+			<button type='button' id='normal'>Atacar</button>
+			<button type='button' id='super'>Ataque especial</button>
+			<button type='button' id='useHeal'>Usar poción PS</button>
+			<button type='button' id='exit'>Abandonar</button>
+		</div>
+		<div id='infoBattle'>
+			<ul id='text'>
+				<li>Pikachu ha hecho <span>7</span> de daño a Charmander.</li>
+			</ul>
+		</div>
+	</div>
 
 	<footer>
 		
