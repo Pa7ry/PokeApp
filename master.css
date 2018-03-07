@@ -105,6 +105,14 @@ button.hide {
 	margin-left: 13%;
 }*/
 
+#controls.hide {
+	display: none;
+}
+
+#controls {
+	align-items: center;
+}
+
 #battleAction.hide {
 	display: none;
 }
@@ -116,7 +124,7 @@ button.hide {
     padding: 2rem;
 }
 
-#controls, #infoBattle {
+#infoBattle {
 	height: 15rem;
 	width: 30%;
 	display: inline-block;

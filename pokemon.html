@@ -27,7 +27,15 @@
 				<progress max='100' value='100' name='progress' id='ps1'></progress>
 				<label for='progress' id='ps1T'>100</label>				
 			</div>
+
 			<button type="button" id='fight' class=''><strong>¡LUCHAR!</strong></button>
+			<div id='controls' class='hide'>
+				<p><button type='button' id='normal'>Atacar</button></p>
+				<p><button type='button' id='super'>Ataque especial</button></p>
+				<p><button type='button' id='useHeal'>Usar poción PS</button></p>
+				<p><button type='button' id='exit'>Abandonar</button></p>
+			</div>
+
 			<div id='poke2' ondrop="drop(event)" ondragover="allowDrop(event)">
 				<progress max='100' value='100' name='progress' id='ps2'></progress>
 				<label for='progress' id='ps2T'>100</label>
@@ -36,17 +44,9 @@
 	</div>
 
 	<div id='battleAction' class='hide'>
-		<div id='controls'>
-			<button type='button' id='normal'>Atacar</button>
-			<button type='button' id='super'>Ataque especial</button>
-			<button type='button' id='useHeal'>Usar poción PS</button>
-			<button type='button' id='exit'>Abandonar</button>
-		</div>
-		<div id='infoBattle'>
-			<div id='text'>
-				
-			</div>
-		</div>
+		<div id='text1'></div>
+	
+		<div id='text2'></div>
 	</div>
 
 	<footer>
