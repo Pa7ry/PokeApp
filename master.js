@@ -123,8 +123,8 @@ bas.addEventListener('click', ()=>{
 		info1.innerHTML = `<p style='color: red;'>${this.name} ha recibido ${basic()} puntos de daño, le quedan ${pokeLife} PS.</p>`
 		info2.innerHTML = `<p style='color: blue;'>${this.name} ha recibido ${basic()} puntos de daño, le quedan ${pokeLifeIA} PS.</p>`;
 		
-		progress1T.innerHTML = `${pokeLife}`;
-		progress2T.innerHTML = `${pokeLifeIA}`;
+		// progress1T.innerHTML = `<b style='color: red'> -${basic()}PS</b> = <span style='color: green'>${pokeLife}PS</span>`;
+		// progress2T.innerHTML = `<b style='color: red'> -${basic()}PS</b> = <span style='color: green'>${pokeLifeIA}PS</span>`;
 
 		progress1.value=`${pokeLife}`;
 		progress2.value=`${pokeLifeIA}`;
