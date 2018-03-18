@@ -130,6 +130,10 @@ button.hide {
 	display: inline-block;
 }
 
-.ps1.hide, .ps2.hide {
+#ps1.hide, #ps2.hide {
+	display: none;
+}
+
+#ps1T.hide, #ps2T.hide {
 	display: none;
 }
