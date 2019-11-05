@@ -70,9 +70,9 @@ img {
 
 #battle {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
-	padding: 2rem;
+	padding: 2rem 5rem;
 }
 
 #poke1, #poke2 {
@@ -89,9 +89,18 @@ img {
 button {
 	text-align: center;
 	height: 2rem;
+	width: 10rem;
 	background: #D81E5B;
 	color: #D8DBE2;
 	border-radius: 8px;
+}
+
+button.call {
+	animation: zoom 1s infinite alternate;
+}
+
+button.disabled {
+	background: gray;
 }
 
 button.hide {
@@ -110,7 +119,10 @@ button.hide {
 }
 
 #controls {
-	align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 215px;
+	justify-content: space-between;
 }
 
 #battleAction.hide {
@@ -119,9 +131,9 @@ button.hide {
 
 #battleAction {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 5rem;
 }
 
 #infoBattle {
@@ -136,4 +148,19 @@ button.hide {
 
 #ps1T.hide, #ps2T.hide {
 	display: none;
+}
+
+#text1, #text2 {
+	text-transform: uppercase;
+	max-width: 30%;
+}
+
+@keyframes zoom {
+	to {
+		text-transform: uppercase;
+		background: #ffffff;
+		border: 1px solid goldenrod;
+		color: goldenrod;
+		font-weight: bold;
+	}
 }

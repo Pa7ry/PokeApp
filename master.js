@@ -9,31 +9,51 @@ class Pokemon {
 	}
 }
 
-let Pikachu = new Pokemon ('Pikachu', 100, 'electric', 'img/pikachu.png');
-let Charmander = new Pokemon ('Charmander', 100, 'fire', 'img/charmander.png');
-let Squirtle = new Pokemon ('Squirtle', 100, 'water', 'img/bulbasaur.png');
-let Bulbasaur = new Pokemon ('Bulbasaur', 100, 'plant', 'img/squirtle.png');
+const Pikachu = new Pokemon ('pikachu', 100, 'electric', 'img/pikachu.png');
+const Charmander = new Pokemon ('charmander', 100, 'fire', 'img/charmander.png');
+const Squirtle = new Pokemon ('squirtle', 100, 'water', 'img/bulbasaur.png');
+const Bulbasaur = new Pokemon ('bulbasaur', 100, 'plant', 'img/squirtle.png');
+
+const Pokemons = [Pikachu, Charmander, Squirtle, Bulbasaur];
+
+
+// VARS
+let data;
+let sel;
+let selectedPokemons = [];
 
 //SELECT POKEMON
 
 function allowDrop(ev) {
-    ev.preventDefault();
+	ev.preventDefault();
 }
+
+
 
 function drag(ev) {
 	ev.dataTransfer.setData('text', ev.target.id);
+	return sel = ev.target.className;
 }
 
-let data;
+
 
 function drop(ev) {
     ev.preventDefault();
 	data = ev.dataTransfer.getData('text');
 	ev.target.style.backgroundImage="url(" + data + ")";
-	let pickPoke = ()=>{
-		console.log(data);
+	let pickPoke = (sel)=> {
+		console.log(sel);
+		for(let p of Pokemons) {
+			console.log(sel, p.name);
+			if(sel == p.name) {
+				selectedPokemons.push(p);
+				console.log(selectedPokemons)
+				selectedPokemons[0].ps = selectedPokemons[0].ps;
+				selectedPokemons[1].ps = selectedPokemons[1].ps;
+			}
+		}
 	}
-	pickPoke();
+	pickPoke(sel);
 }
 
 
@@ -75,14 +95,11 @@ btn.addEventListener('click', ()=>{
 
 //BUTTONS
 
- let bas = document.getElementById('normal');
- let spe = document.getElementById('super');
- let psPlus = document.getElementById('useHeal');
- let exit = document.getElementById('exit');
+let bas = document.getElementById('normal');
+let spe = document.getElementById('super');
+let psPlus = document.getElementById('useHeal');
+let exit = document.getElementById('exit');
 
-
-let pokeLife = Pikachu.ps;
-let pokeLifeIA = Charmander.ps;
 let info1 = document.getElementById('text1');
 let info2 = document.getElementById('text2');
 let count = 0;
@@ -103,6 +120,7 @@ exit.addEventListener('click', ()=>{
 		progress2T.className = 'hide';
 		poke1.style.backgroundImage = 'none';
 		poke2.style.backgroundImage = 'none';
+		selectedPokemons = [];
 	}
 })
 
@@ -113,31 +131,35 @@ bas.addEventListener('click', ()=>{
 	count++;
 	if (count > 5){
 		count = 5;
+		spe.classList.add('call');
+		spe.classList.remove('disabled');
 	}
 
 	console.log(count);
-	pokeLife = pokeLife - basic();
-	pokeLifeIA = pokeLifeIA - basic();
+	let attack = basic();
+	let attackIA = basic();
+	selectedPokemons[0].ps = selectedPokemons[0].ps - attack;
+	selectedPokemons[1].ps = selectedPokemons[1].ps -attackIA;
 
-	if (pokeLife > 0 && pokeLifeIA >0){
-		info1.innerHTML = `<p style='color: red;'>${this.name} ha recibido ${basic()} puntos de daño, le quedan ${pokeLife} PS.</p>`
-		info2.innerHTML = `<p style='color: blue;'>${this.name} ha recibido ${basic()} puntos de daño, le quedan ${pokeLifeIA} PS.</p>`;
+	if (selectedPokemons[0].ps > 0 && selectedPokemons[1].ps >0){
+		info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } ha recibido ${ attackIA } puntos de daño, le quedan ${selectedPokemons[0].ps} PS.</p>`
+		info2.innerHTML = `<p style='color: blue;'>${ selectedPokemons[1].name } ha recibido ${ attack } puntos de daño, le quedan ${selectedPokemons[1].ps} PS.</p>`;
 		
-		// progress1T.innerHTML = `<b style='color: red'> -${basic()}PS</b> = <span style='color: green'>${pokeLife}PS</span>`;
-		// progress2T.innerHTML = `<b style='color: red'> -${basic()}PS</b> = <span style='color: green'>${pokeLifeIA}PS</span>`;
+		progress1T.innerHTML = `<b style='color: red'> -${ attack }PS</b> = <span style='color: green'>${ selectedPokemons[0].ps }PS</span>`;
+		progress2T.innerHTML = `<b style='color: red'> -${ attackIA }PS</b> = <span style='color: green'>${ selectedPokemons[1].ps }PS</span>`;
 
-		progress1.value=`${pokeLife}`;
-		progress2.value=`${pokeLifeIA}`;
+		progress1.value=`${selectedPokemons[0].ps}`;
+		progress2.value=`${selectedPokemons[1].ps}`;
 
-	} else if (pokeLife <= 0 && pokeLifeIA >0) {
-		info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-		info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} ha ganado!</b></p>`;
+	} else if (selectedPokemons[0].ps <= 0 && selectedPokemons[1].ps > 0) {
+		info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } se ha debilitado</p>`
+		info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } ha ganado!</b></p>`;
 		
 		progress1T.innerHTML = 'K.O.';
 
-	} else if (pokeLife > 0 && pokeLifeIA <=0){
-		info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-		info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} ha ganado!</b></p>`;
+	} else if (selectedPokemons[0].ps > 0 && selectedPokemons[1].ps <= 0){
+		info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } ha ganado!</b></p>`
+		info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } se ha debilitado</p>`;
 		
 		progress2T.innerHTML = 'K.O.';
 	}
@@ -149,33 +171,35 @@ bas.addEventListener('click', ()=>{
 spe.addEventListener('click', ()=>{
 	if (count == 5){
 		count = 0;
-		pokeLife = pokeLife - special();
-		pokeLifeIA = pokeLifeIA - special();
+		spe.classList.remove('call');
+		spe.classList.add('disabled');
+		selectedPokemons[0].ps = selectedPokemons[0].ps - special();
+		selectedPokemons[1].ps = selectedPokemons[1].ps - special();
 
-		if (pokeLife > 0 && pokeLifeIA >0){
-			info1.innerHTML = `<p style='color: red;'>${this.name} ha recibido ${special()} puntos de daño, le quedan ${pokeLife} PS.</p>`
-			info2.innerHTML = `<p style='color: blue;'>${this.name} ha recibido ${special()} puntos de daño, le quedan ${pokeLifeIA} PS.</p>`;
+		if (selectedPokemons[0].ps > 0 && selectedPokemons[1].ps >0){
+			info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } ha recibido ${special()} puntos de daño, le quedan ${selectedPokemons[0].ps} PS.</p>`
+			info2.innerHTML = `<p style='color: blue;'>${ selectedPokemons[1].name } ha recibido ${special()} puntos de daño, le quedan ${selectedPokemons[1].ps} PS.</p>`;
 			
-			progress1T.innerHTML = `${pokeLife}`;
-			progress2T.innerHTML = `${pokeLifeIA}`;
+			progress1T.innerHTML = `${ selectedPokemons[0].ps }`;
+			progress2T.innerHTML = `${ selectedPokemons[1].ps }`;
 			
-			progress1.value=`${pokeLife}`;
-			progress2.value=`${pokeLifeIA}`;
+			progress1.value=`${ selectedPokemons[0].ps }`;
+			progress2.value=`${ selectedPokemons[1].ps }`;
 	
-		} else if (pokeLife <= 0 && pokeLifeIA >0) {
-			info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-			info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} ha ganado!</b></p>`;
+		} else if (selectedPokemons[0].ps <= 0 && selectedPokemons[1].ps >0) {
+			info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } se ha debilitado</p>`
+			info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } ha ganado!</b></p>`;
 
 			progress1T.innerHTML = 'K.O.';
 
-		} else if (pokeLife >= 0 && pokeLifeIA <=0){
-			info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-			info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} ha ganado!</b></p>`;
+		} else if (selectedPokemons[0].ps >= 0 && selectedPokemons[1].ps <=0){
+			info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } se ha debilitado</p>`
+			info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } ha ganado!</b></p>`;
 
 			progress2T.innerHTML = 'K.O.';
-		} else if (pokeLife == 0 && pokeLifeIA == 0) {
-			info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-			info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} se ha debilitado</b></p>`;
+		} else if (selectedPokemons[0].ps == 0 && selectedPokemons[1].ps == 0) {
+			info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } se ha debilitado</p>`
+			info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } se ha debilitado</b></p>`;
 
 			progress1T.innerHTML = 'K.O.';
 			progress2T.innerHTML = 'K.O.';
@@ -187,46 +211,46 @@ spe.addEventListener('click', ()=>{
 //HEAL
 
 psPlus.addEventListener('click', ()=>{
-	info1.innerHTML = `<p style='color: red;'>${this.name} tiene ${pokeLife} PS, es pronto para tomar una poción.</p>`
-	info2.innerHTML = `<p style='color: blue;'>${this.name} tiene ${pokeLifeIA} PS, es pronto para tomar una poción.</p>`;
+	info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } tiene ${selectedPokemons[0].ps} PS, es pronto para tomar una poción.</p>`
+	info2.innerHTML = `<p style='color: blue;'>${ selectedPokemons[1].name } tiene ${selectedPokemons[1].ps} PS, es pronto para tomar una poción.</p>`;
 		
-	if (pokeLife <= 70 && pokeLifeIA <= 70) {
+	if (selectedPokemons[0].ps <= 70 && selectedPokemons[1].ps <= 70) {
 		countH++;
 
 		if (countH < 3) {
 			console.log(countH);
-			pokeLife = pokeLife + heal();
-			pokeLifeIA = pokeLifeIA + heal();
+			selectedPokemons[0].ps = selectedPokemons[0].ps + heal();
+			selectedPokemons[1].ps = selectedPokemons[1].ps + heal();
 
-			info1.innerHTML = `<p style='color: red;'>${this.name} ha recuperado ${heal()} puntos de vida, le quedan ${pokeLife} ps.</p>`
-			info2.innerHTML = `<p style='color: blue;'>${this.name} ha recuperado ${heal()} puntos de vida, le quedan ${pokeLifeIA} ps.</p>`;
+			info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } ha recuperado ${heal()} puntos de vida, le quedan ${selectedPokemons[0].ps} ps.</p>`
+			info2.innerHTML = `<p style='color: blue;'>${ selectedPokemons[1].name } ha recuperado ${heal()} puntos de vida, le quedan ${selectedPokemons[1].ps} ps.</p>`;
 			
-			progress1T.innerHTML = `${pokeLife}`;
-			progress2T.innerHTML = `${pokeLifeIA}`;
+			progress1T.innerHTML = `${selectedPokemons[0].ps}`;
+			progress2T.innerHTML = `${selectedPokemons[1].ps}`;
 			
-			progress1.value=`${pokeLife}`;
-			progress2.value=`${pokeLifeIA}`;
+			progress1.value=`${selectedPokemons[0].ps}`;
+			progress2.value=`${selectedPokemons[1].ps}`;
 
 		}  else {
 			info1.innerHTML = `<p style='color: red;'>No puedes usar más pociones.</p>`
 			info2.innerHTML = `<p style='color: blue;'>No puedes usar más pociones.</p>`;
 		}
 
-	} else if (pokeLife <= 0 && pokeLifeIA >0) {
-		info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-		info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} ha ganado!</b></p>`;
+	} else if (selectedPokemons[0].ps <= 0 && selectedPokemons[1].ps > 0) {
+		info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } se ha debilitado</p>`
+		info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } ha ganado!</b></p>`;
 		
 		progress1T.innerHTML = 'K.O.';
 	
-	} else if (pokeLife >= 0 && pokeLifeIA <=0){
-		info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-		info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} ha ganado!</b></p>`;
+	} else if (selectedPokemons[0].ps >= 0 && selectedPokemons[1].ps <= 0){
+		info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } ha ganado!</b></p>`;
+		info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } se ha debilitado</p>`;
 		
 		progress2T.innerHTML = 'K.O.';
 
-	} else if (pokeLife == 0 && pokeLifeIA == 0) {
-		info1.innerHTML = `<p style='color: red;'>${this.name} se ha debilitado</p>`
-		info2.innerHTML = `<p style='color: blue;'><b>¡${this.name} se ha debilitado</b></p>`;
+	} else if (selectedPokemons[0].ps == 0 && selectedPokemons[1].ps == 0) {
+		info1.innerHTML = `<p style='color: red;'>${ selectedPokemons[0].name } se ha debilitado</p>`
+		info2.innerHTML = `<p style='color: blue;'><b>¡${ selectedPokemons[1].name } se ha debilitado</b></p>`;
 		
 		progress1T.innerHTML = 'K.O.';
 		progress2T.innerHTML = 'K.O.';
